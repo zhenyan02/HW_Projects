@@ -1,0 +1,71 @@
+package finalproject.bookstore;
+
+
+public class Seller {
+	private int id = -1;
+	private String name = "";
+	private double price; 
+	private String location;
+	private int stockquantity;
+	
+	public Seller() {
+		super();
+	}
+	public Seller(String name, double price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+	public Seller(String name, double price, String location, int stockquantity) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.location = location;
+		this.stockquantity = stockquantity;
+	}
+	public Seller(int id, String name, double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+	public Seller(int id, String name, double price, String location, int stockquantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.location = location;
+		this.stockquantity = stockquantity;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public int getStockquantity() {
+		return stockquantity;
+	}
+	public void setStockquantity(int stockquantity) {
+		this.stockquantity = stockquantity;
+	}
+	
+}

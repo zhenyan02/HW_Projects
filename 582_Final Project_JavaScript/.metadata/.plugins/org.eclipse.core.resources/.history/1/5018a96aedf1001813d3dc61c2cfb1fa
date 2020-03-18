@@ -1,0 +1,102 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="finalproject.bookstore.*, java.util.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body background="back6.jpg">
+	<h1>Welcome to Book Store</h1>
+
+<%
+	BranchDAO dao = new BranchDAO();
+	
+	//controller{
+	String action = request.getParameter("action");
+    String name = request.getParameter("name");
+    String saleprice = request.getParameter("saleprice");
+    String stock = request.getParameter("stock");
+    String version = request.getParameter("version");
+    String action2 = request.getParameter("action2");
+    String name2 = request.getParameter("name2");
+    String saleprice2 = request.getParameter("saleprice2");
+    String stock2 = request.getParameter("stock2");
+    String version2 = request.getParameter("version2");
+    Branch app = new Branch();
+    Branch apB2 = new Branch();
+    
+    if("create".equals(action)){
+     	int stockInt = Integer.parseInt(stock);
+    	double salepriceD = Double.parseDouble(saleprice);
+    	int versionInt = Integer.parseInt(version);
+        app = new Branch(salepriceD, stockInt,name,versionInt); 
+    	int stockInt2 = Integer.parseInt(stock2);
+    	double salepriceD2 = Double.parseDouble(saleprice2);
+    	int versionInt2 = Integer.parseInt(version2);
+        apB2 = new Branch(salepriceD2, stockInt2,name2,versionInt2); 
+		List<Branch> twoInputs = new ArrayList<Branch>();
+		twoInputs.add(app);
+		twoInputs.add(apB2);
+		dao.listInsert(twoInputs);
+    }
+    	
+    	
+    	
+	//Seller app1 = new Seller("xxxyxx", 8.99);
+	//dao.create(app1);
+	
+	
+	List<Branch> branchs = dao.selectAll();
+	 //}
+%> 
+<form action="BuyerWeb.jsp">
+	<table class= "table">
+			<tr>
+			<span class="input-group-addon">-</span>
+			<td> <select name = "options">
+				<% for(Branch ap:branchs){%>  
+						<option><%= ap.getName() %>  -----  only <%= ap.getStock() %> left</option>
+				<% }%>		
+			</select> 	</td>		
+			<td><input name="stock" class="form-control" value="<%= app.getStock()%>"/></td>
+			</tr>
+			
+			
+			<tr>
+			<span class="input-group-addon">-</span>
+			<td> <select name = "options">
+				<% for(Branch ap:branchs){%>  
+						<option><%= ap.getName() %>  -----  only <%= ap.getStock() %> left</option>
+				<% }%>		
+			</select> 	</td>		
+			<td><input name="stock" class="form-control" value="<%= app.getStock()%>"/></td>
+			</tr>
+		
+			<tr>
+			<span class="input-group-addon">-</span>
+			<td> <select name = "options">
+				<% for(Branch ap:branchs){%>  
+						<option><%= ap.getName() %>  -----  only <%= ap.getStock() %> left</option>
+				<% }%>		
+			</select> 	</td>		
+			<td><input name="stock" class="form-control" value="<%= app.getStock()%>"/></td>
+			</tr>
+				
+				
+				
+				<tr><td>
+				<button class="btn btn-success" name="action" value="order">
+					order
+				</button>
+				</td>
+				<tr/>
+				
+				
+   </table>
+</form>
+</body>
+</html>
+

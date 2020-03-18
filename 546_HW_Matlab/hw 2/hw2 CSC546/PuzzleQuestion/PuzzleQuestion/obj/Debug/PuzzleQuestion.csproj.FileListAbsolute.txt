@@ -1,0 +1,14 @@
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.csprojAssemblyReference.cache
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.csproj.CoreCompileInputs.cache
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\bin\Debug\PuzzleQuestion.exe.config
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\bin\Debug\PuzzleQuestion.exe
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\bin\Debug\PuzzleQuestion.pdb
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.exe
+C:\Users\jiyuwang\Desktop\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.pdb
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\bin\Debug\PuzzleQuestion.exe.config
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\bin\Debug\PuzzleQuestion.exe
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\bin\Debug\PuzzleQuestion.pdb
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.csprojAssemblyReference.cache
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.csproj.CoreCompileInputs.cache
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.exe
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\PuzzleQuestion\PuzzleQuestion\obj\Debug\PuzzleQuestion.pdb

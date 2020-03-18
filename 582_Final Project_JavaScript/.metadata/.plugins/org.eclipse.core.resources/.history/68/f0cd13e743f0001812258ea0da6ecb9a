@@ -1,0 +1,134 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="finalproject.bookstore.*, java.util.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body background="back1.jpg">
+	<h1>Sellers</h1>
+			<select name = "options">
+			<option>update</option>
+			<option>delete</option>
+			<option>add</option>
+			</select> 
+				<button class="btn btn-success" name="action" value="deleteAll">
+					Delete All Selected
+				</button>
+<%
+	SellerDAO dao = new SellerDAO();
+	
+	//controller{
+	String action = request.getParameter("action");
+    String name = request.getParameter("name");
+    String price = request.getParameter("price");
+    String id = request.getParameter("id");
+	String action2 = request.getParameter("action2");
+    String name2 = request.getParameter("name2");
+    String price2 = request.getParameter("price2");
+    String id2 = request.getParameter("id2");
+    Seller app = new Seller();
+    Seller apS2 = new Seller();
+	List<Seller> multiDelete = new ArrayList<Seller>();
+	
+    Seller aXX2 = new Seller();
+    Seller aXX1 = new Seller();
+    
+    if("create".equals(action)){
+    	int idInt = Integer.parseInt(id);
+    	double priceD = Double.parseDouble(price);
+        app = new Seller(idInt, name, priceD); 
+    	dao.create(app);
+    }else if("remove".equals(action)){
+    	//String nameString = String.parseString(id);
+    	dao.remove(name);
+    }else if("select".equals(action)){
+    	//int idInt = Integer.parseInt(id);
+    	app = dao.selectOne(name);
+    }else if("update".equals(action)){
+    	int idInt = Integer.parseInt(id);
+    	double priceD = Double.parseDouble(price);
+    	app = new Seller(idInt, name, priceD); 
+    	dao.update(name, app);
+    }else if("create2".equals(action)){
+    	int idInt = Integer.parseInt(id);
+    	double priceD = Double.parseDouble(price);
+        app = new Seller(idInt, name, priceD); 
+    	int idInt2 = Integer.parseInt(id2);
+    	double priceD2 = Double.parseDouble(price2);
+        apS2 = new Seller(idInt2, name2, priceD2); 
+		List<Seller> twoInputs = new ArrayList<Seller>();
+		twoInputs.add(app);
+		twoInputs.add(apS2);
+		dao.listInsert(twoInputs);
+    }else if("deleteAll".equals(action)){
+    	//String nameString = String.parseString(id);
+    	        aXX2 = new Seller(1, "AXA",1);
+    	        aXX1 = new Seller(1, "AYA",1);
+    	    	multiDelete.add(aXX2);
+    	    	multiDelete.add(aXX1);
+    	dao.listDelete(multiDelete);
+
+    }
+    	
+    	
+	//Seller app1 = new Seller("xxxyxx", 8.99);
+	//dao.create(app1);
+	
+	
+	List<Seller> sellers = dao.selectAll();
+	 //}
+%> 
+<form action="SellerWeb.jsp">
+	<table class= "table">
+		<tr>			
+			<td><input name="id" class="form-control" value="<%= app.getId()%>"/></td>
+			<td><input name="name" class="form-control" value="<%= app.getName()%>"/></td>
+			<td><input name="price" class="form-control" value="<%= app.getPrice()%>"/></td>
+			<td>
+				<button class="btn btn-success" name="action" value="create">
+					Add
+				</button>
+				<button class="btn btn-primary" name="action" value="update">
+					Update
+				</button>
+			</td>
+		</tr>
+		
+		<tr>			
+			<td><input name="id2" class="form-control" value="<%= apS2.getId()%>"/></td>
+			<td><input name="name2" class="form-control" value="<%= apS2.getName()%>"/></td>
+			<td><input name="price2" class="form-control" value="<%= apS2.getPrice()%>"/></td>
+			<td>
+				<button class="btn btn-success" name="action" value="create2">
+					Add 2 together
+				</button>
+			</td>
+		</tr>
+		
+<% for(Seller ap:sellers){	
+%>  <tr>
+		<td><input name="id" type="checkbox" value="<%= ap.getName()%>"/></td>
+		<% multiDelete.add(ap);%>
+		<td><%= ap.getId() %></td>
+		<td><%= ap.getName() %></td>
+		<td><%= ap.getPrice() %></td>
+		<td>
+			<a class="btn btn-danger" href="SellerWeb.jsp?action=remove&name=<%= ap.getName() %>">
+				Delete
+			</a>
+			<a class="btn btn-warning" href="SellerWeb.jsp?action=select&name=<%= ap.getName() %>">
+				Select
+			</a>
+		</td>
+	</tr>
+<% 
+	}
+%>	
+   </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,116 @@
+package finalproject.bookstore;
+
+import java.sql.*;
+import java.util.*;
+import java.io.*;
+
+public class buyerTest {
+
+    public static void main (String args []) {
+	Connection conn = null;
+	Statement stmt = null;
+	try {
+	    conn = DriverManager.getConnection 
+		("jdbc:mysql://localhost:3306/onlineide",
+				"zhenyanl", "zhenyanl"); // Connect to DB
+	    stmt = conn.createStatement (); // Create statement
+	} catch (SQLException ex) {
+	    System.out.println ("Could not create Statement:" + 
+					ex.toString ());
+        }
+	String sql = "CREATE TABLE employee (employee_name varchar(255), department_name varchar(255), salary int, location_id int, primary key(employee_name))";
+	try {
+	    stmt.executeUpdate (sql); // create the table
+	} catch (SQLException sqlEx) {
+	    System.out.println ("Could not create table:" + 
+					sqlEx.toString ());
+	}
+	String ins1 = "INSERT INTO employee values ('John Smith', 'Engineer', 35, 1011 )";
+	String ins2 = "INSERT INTO employee values ('Mary Lee', 'Finance', 20, 1012)";
+	String ins3 = "INSERT INTO employee values ('Matt Brown','IT', 36, 1011 )";
+	String ins4 = "INSERT INTO employee values ('Lily Judy', 'Accounting', 22, 1012)";
+	String ins5 = "INSERT INTO employee values ('Jeff Cook', 'Marketing', 25, 1013 )";
+	String ins6 = "INSERT INTO employee values ('Eva Long', 'HR', 20, 1012)";
+	String ins7 = "INSERT INTO employee values ('David Stepic','Engineer', 36, 1011 )";
+	String ins8 = "INSERT INTO employee values ('Lorry Reese', 'Finance', 20, 1012)";
+
+	try {
+	    stmt.executeUpdate (ins1); // insert the values
+	    stmt.executeUpdate (ins2);
+	    stmt.executeUpdate (ins3); 
+	    stmt.executeUpdate (ins4);
+	    stmt.executeUpdate (ins5); 
+	    stmt.executeUpdate (ins6);
+	    stmt.executeUpdate (ins7); 
+	    stmt.executeUpdate (ins8);
+	} catch (SQLException sqlEx) {
+            System.out.println ("Could not create table:" 
+					+ sqlEx.toString ());
+        }
+    
+	String sql1 = "CREATE TABLE information (employee_name1 varchar(255), employee_id int, age int, "
+			+ "gender varchar(255), primary key(employee_id))";
+	try {
+	    stmt.executeUpdate (sql1); // create the table
+	} catch (SQLException sqlEx) {
+	    System.out.println ("Could not create table:" + 
+					sqlEx.toString ());
+	}
+	String ins11 = "INSERT INTO information values ('John Smith', 10 , 28, 'Male')";
+	String ins22 = "INSERT INTO information values ('Mary Lee', 12, 27, 'Female')";
+	String ins33 = "INSERT INTO information values ('Matt Brown',13, 35, 'Male' )";
+	String ins44 = "INSERT INTO information values ('Lily Judy', 14, 22, 'Female')";
+	String ins55 = "INSERT INTO information values ('Jeff Cook', 15, 25, 'Male')";
+	String ins66 = "INSERT INTO information values ('Eva Long', 16, 30, 'Female')";
+	String ins77 = "INSERT INTO information values ('David Stepic',17, 29, 'Female' )";
+	String ins88 = "INSERT INTO information values ('Lorry Reese', 18, 28, 'Female')";
+
+	try {
+	    stmt.executeUpdate (ins11); // insert the values
+	    stmt.executeUpdate (ins22);
+	    stmt.executeUpdate (ins33); 
+	    stmt.executeUpdate (ins44);
+	    stmt.executeUpdate (ins55); 
+	    stmt.executeUpdate (ins66);
+	    stmt.executeUpdate (ins77); 
+	    stmt.executeUpdate (ins88);
+	} catch (SQLException sqlEx) {
+            System.out.println ("Could not create table:" 
+					+ sqlEx.toString ());
+        }
+	
+	sql = "SELECT * from employee";
+	sql1 = "SELECT * from information";
+	try {
+	    ResultSet r = stmt.executeQuery (sql); 
+	    //ResultSet q = stmt.executeQuery (sql1);// execute the query
+	    while (r.next ()) {
+	        System.out.println ("employee_name = " + r.getString ("employee_name") + 
+					": department_name = " + r.getString ("department_name") + " , salary = " + r.getInt ("salary") + " , location_id = " + r.getInt ("location_id"));
+	    }
+	} catch (SQLException sqlEx) {
+	    System.out.println ("Could not get results:" + 
+						sqlEx.toString ());
+	}
+
+	try {
+	     
+	    ResultSet q = stmt.executeQuery (sql1);// execute the query
+	    while (q.next ()) {
+	        System.out.println ("employee_name = " + q.getString ("employee_name1") + 
+					": employee_id = " + q.getInt ("employee_id") + " , age = " + q.getInt ("age") + " , gender = " + q.getString ("gender"));
+	    }
+	} catch (SQLException sqlEx) {
+	    System.out.println ("Could not get results:" + 
+						sqlEx.toString ());
+	}
+	
+	try {
+	    stmt.close ();// Close the statement
+	    conn.close (); // Close the connection
+	} catch (SQLException sqlEx) {
+	    System.out.println ("Could not close connection:" + 
+						sqlEx.toString ());
+		}
+    }
+}

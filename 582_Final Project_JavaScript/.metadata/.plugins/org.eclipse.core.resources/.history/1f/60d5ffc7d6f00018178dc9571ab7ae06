@@ -1,0 +1,128 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="finalproject.bookstore.*, java.util.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body background="back3.gif">
+	<h1>Welcome to Online BookStore</h1>
+
+<%
+	BuyerDAO dao = new BuyerDAO();
+	
+	//controller{
+	String action = request.getParameter("action");
+    String name = request.getParameter("name");
+    String saleprice = request.getParameter("saleprice");
+    String quantity = request.getParameter("quantity");
+    String action2 = request.getParameter("action2");
+    String name2 = request.getParameter("name2");
+    String saleprice2 = request.getParameter("salepric2e");
+    String quantity2 = request.getParameter("quantity2");
+    Buyer app = new Buyer();
+    Buyer apB2 = new Buyer();
+    
+    if("create".equals(action)){
+    	int quantityInt = Integer.parseInt(quantity);
+    	double salepriceD = Double.parseDouble(saleprice);
+        app = new Buyer(salepriceD, quantityInt,name); 
+    	dao.create(app);
+    }else if("remove".equals(action)){
+    	//String nameString = String.parseString(id);
+    	dao.remove(name);
+    }else if("select".equals(action)){
+    	//int idInt = Integer.parseInt(id);
+    	app = dao.selectOne(name);
+    }else if("update".equals(action)){
+    	int quantityInt = Integer.parseInt(quantity);
+    	double salepriceD = Double.parseDouble(saleprice);
+    	app = new Buyer(salepriceD, quantityInt, name); 
+    	dao.update(name, app);
+    }else if("create2".equals(action)){
+    	int quantityInt = Integer.parseInt(quantity);
+    	double salepriceD = Double.parseDouble(saleprice);
+        app = new Buyer(salepriceD, quantityInt, name); 
+    	int quantityInt2 = Integer.parseInt(quantity2);
+    	double salepriceD2 = Double.parseDouble(saleprice2);
+        apB2 = new Buyer(salepriceD2, quantityInt2, name2); 
+		List<Buyer> twoInputs = new ArrayList<Buyer>();
+		twoInputs.add(app);
+		twoInputs.add(apB2);
+		dao.listInsert(twoInputs);
+    }
+    	
+    	
+    	
+	//Seller app1 = new Seller("xxxyxx", 8.99);
+	//dao.create(app1);
+	
+	
+	List<Buyer> buyers = dao.selectAll();
+	 //}
+%> 
+<form action="CustomerWeb.jsp">
+	<table class= "table">
+		<tr>			
+			<td><input name="quantity" class="form-control" value="<%= app.getQuantity()%>"/></td>
+			<td><input name="name" class="form-control" value="<%= app.getName()%>"/></td>
+			<td><input name="saleprice" class="form-control" value="<%= app.getSaleprice()%>"/></td>			
+			<td>
+				<button class="btn btn-success" name="action" value="create">
+					Add
+				</button>
+				<button class="btn btn-primary" name="action" value="update">
+					Update
+				</button>
+			</td>
+		</tr>
+		
+		<tr>			
+			<td><input name="quantity2" class="form-control" value="<%= apB2.getQuantity()%>"/></td>
+			<td><input name="name2" class="form-control" value="<%= apB2.getName()%>"/></td>
+			<td><input name="saleprice2" class="form-control" value="<%= apB2.getSaleprice()%>"/></td>
+			<td>
+				<button class="btn btn-success" name="action" value="create2">
+					Add 2 together
+				</button>
+			</td>
+		</tr>
+		
+		
+			<div>			
+			<td><input name="quantity" class="form-control" value="<%= app.getQuantity()%>"/></td>
+			<span class="input-group-addon">-</span>
+			<td> <select name = "options">
+				<% for(Buyer ap:buyers){%>  
+						<option><%= ap.getName() %></option>
+				<% }%>		
+			</select> 	</td>		
+			</div>
+		
+		
+		
+<% for(Buyer ap:buyers){	
+%>  <tr>
+		<td><%= ap.getQuantity() %></td>
+		<td><%= ap.getName() %></td>
+		<td><%= ap.getSaleprice() %></td>
+		<td>
+			<a class="btn btn-danger" href="BuyerWeb.jsp?action=remove&name=<%= ap.getName() %>">
+				Delete
+			</a>
+			<a class="btn btn-warning" href="BuyerWeb.jsp?action=select&name=<%= ap.getName() %>">
+				Select
+			</a>
+		</td>
+	</tr>
+<% 
+	}
+%>	
+   </table>
+</form>
+</body>
+</html>
+

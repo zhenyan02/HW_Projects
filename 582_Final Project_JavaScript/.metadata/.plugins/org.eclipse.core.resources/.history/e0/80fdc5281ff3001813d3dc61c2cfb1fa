@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="finalproject.bookstore.*, java.util.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body background="back6.jpg">
+	<h1>Welcome to Book Store</h1>
+
+<%
+	BranchDAO dao = new BranchDAO();
+	
+	//controller{
+	String action = request.getParameter("action");
+    String name = request.getParameter("name");
+    String saleprice = request.getParameter("saleprice");
+    String stock = request.getParameter("stock");
+    String orderNbr = request.getParameter("orderNbr");
+    String version = request.getParameter("version");
+    String action2 = request.getParameter("action2");
+    String name2 = request.getParameter("name2");
+    String saleprice2 = request.getParameter("saleprice2");
+    String orderNbr2 = request.getParameter("orderNbr2");
+    String stock2 = request.getParameter("stock2");
+    String version2 = request.getParameter("version2");
+    Branch app = new Branch();
+    String order1 = request.getParameter("options");
+    Order ap1 = new Order();
+    Order ap2 = new Order();
+    
+    if("order".equals(action)){
+     	/*int orderNbrInt = Integer.parseInt(orderNbr);
+    	int versionInt = Integer.parseInt(version);
+     	int stockInt = Integer.parseInt(stock);
+        ap1 = new Order(orderNbrInt, stockInt,name,versionInt); 
+        
+     	int orderNbrInt2 = Integer.parseInt(orderNbr2);
+     	int stockInt2 = Integer.parseInt(stock2);
+    	int versionInt2 = Integer.parseInt(version2);
+        ap2 = new Order(orderNbrInt2, stockInt,name2,versionInt2); 
+
+		List<Order> twoInputs = new ArrayList<Order>();
+		twoInputs.add(ap1);
+		twoInputs.add(ap2);
+		dao.listOrder(twoInputs);*/
+		//app = options.getName();
+		System.out.println("hellooooooooooooooo");
+		String[] valuesplit1 = order1.split(",");
+		System.out.println(valuesplit1);
+    }
+    	
+    	
+    	
+	//Seller app1 = new Seller("xxxyxx", 8.99);
+	//dao.create(app1);
+	
+	
+	List<Branch> branchs = dao.selectAll();
+	 //}
+%> 
+<form action="BuyerWeb.jsp">
+
+	<table class= "table">
+			<tr>
+	
+			<td> <select name = "options">
+				<% for(Branch apa:branchs){%>  
+						<option value = "<%=apa.getStock(),apa.getName(),apa.getVersion()%>">
+						<%= apa.getName() %> -- Price:$<%= apa.getSaleprice() %> -- only <%= apa.getStock() %> left
+						</option>
+				<% }%>		
+			</select> 	</td>		
+			<td><input name="orderNbr" class="form-control" value="<%= ap1.getOrderNbr()%>"/></td>
+			</tr>
+			
+			
+
+		
+						
+				<td>
+				<button class="btn btn-success" name="action" value="order">
+					order
+				</button>
+				</td>
+				
+				
+   </table>
+</form>
+</body>
+</html>
+
+

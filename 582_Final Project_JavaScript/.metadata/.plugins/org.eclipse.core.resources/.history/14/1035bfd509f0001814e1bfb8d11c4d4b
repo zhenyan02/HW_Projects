@@ -1,0 +1,158 @@
+package finalproject.bookstore;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SellerDAO {
+	
+	public Connection getConnection(){
+		String connectionUrl = "jdbc:mysql://localhost:3306/onlineide"; 
+		Connection connection = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(connectionUrl, "root", "zhenyanl");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return connection;
+		
+	}
+	
+	public void closeConnection(Connection connection){
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void create(Seller seller){
+		
+		String sql = "insert into sellers(id, name, price) values (? ,?, ?)";
+		
+		Connection connection = getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, seller.getId());
+			statement.setString(2, seller.getName());
+			statement.setDouble(3, seller.getPrice());
+			statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally { 		
+			closeConnection(connection);
+		}
+	}
+
+	public List<Seller> selectAll(){
+		List<Seller> sellers = new ArrayList<Seller>();
+		
+		String sql = "select * from sellers";
+		Connection connection = getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet results = statement.executeQuery();
+			while(results.next()){
+				int id = results.getInt("id");
+				String name = results.getString("name");
+				double price = results.getDouble("price");
+				//int stockquantity = results.getInt("stockquantity");
+				Seller seller = new Seller(id, name, price); 
+				sellers.add(seller);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally { 		
+			closeConnection(connection);
+		}
+		
+		return sellers;
+	}
+	
+	public void remove(String name){
+		String sql = "delete from sellers where name=?";
+		
+		Connection connection = getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1,  name);
+			statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeConnection(connection);
+		}
+	}
+		
+	
+	public Seller selectOne(String name) {
+		Seller app = null;
+		
+		String sql = "select * from sellers where name=?";
+		Connection connection = getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1,  name);
+			ResultSet results = statement.executeQuery();
+			if(results.next()){
+				int id = results.getInt("id");
+				name = results.getString("name");
+				double price = results.getDouble("price");
+				app = new Seller(id,name,price);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeConnection(connection);
+		}
+		return app;
+	}
+	
+	public void update(String name, Seller app) {
+		
+		
+		String sql = "update sellers set id=?, name=?, price=? where name=?";
+		Connection connection = getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, app.getId());
+			statement.setString(2, app.getName());
+			statement.setDouble(3, app.getPrice());
+			statement.setString(4, name);
+			statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeConnection(connection);
+		}		
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		SellerDAO dao = new SellerDAO();
+		
+		Seller app1 = new Seller(111111,"xxxxxxx", 8.99);
+		dao.create(app1);
+		
+		/*
+		Connection connection = dao.getConnection();
+		System.out.println(connection);
+		dao.closeConnection(connection);
+		*/
+		
+	}
+
+}

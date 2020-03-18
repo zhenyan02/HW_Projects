@@ -1,0 +1,14 @@
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\bin\Debug\Marbles14.exe.config
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\bin\Debug\Marbles14.exe
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\bin\Debug\Marbles14.pdb
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.csprojAssemblyReference.cache
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.csproj.CoreCompileInputs.cache
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.exe
+C:\Users\jiyuwang\Desktop\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.pdb
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\bin\Debug\Marbles14.exe.config
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\bin\Debug\Marbles14.exe
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\bin\Debug\Marbles14.pdb
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.csprojAssemblyReference.cache
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.csproj.CoreCompileInputs.cache
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.exe
+C:\Users\jiyuwang\Desktop\546\hw2 CSC546\Marbles14\Marbles14\obj\Debug\Marbles14.pdb
